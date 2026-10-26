@@ -10,16 +10,52 @@ Two independent skills for building a **Uniswap V2-style DEX on Arc**. Each is i
 ## Install with npx (no clone)
 
 ```bash
-npx -y github:Asif2902/arc-dex-skills                 # auto-detects all installed AI CLIs + ~/.agents/skills
-npx -y github:Asif2902/arc-dex-skills --grok          # Grok Build, all projects (~/.grok/skills)
-npx -y github:Asif2902/arc-dex-skills --grok-project  # Grok Build, this project only (./.grok/skills)
-npx -y github:Asif2902/arc-dex-skills --all           # install into all supported global CLI folders
-npx -y github:Asif2902/arc-dex-skills --claude        # Claude Code (also: --codex --gemini --antigravity --opencode)
-npx -y github:Asif2902/arc-dex-skills --cursor        # Cursor (also: --copilot --windsurf --cline --roo --kiro --amp --goose)
-npx -y github:Asif2902/arc-dex-skills --project       # this project only (./.agents/skills & ./.claude/skills)
-npx -y github:Asif2902/arc-dex-skills --dir PATH      # any custom folder a tool reads skills from
-npx -y github:Asif2902/arc-dex-skills --agents-md     # copies skills to ./.ai-skills and adds a pointer to ./AGENTS.md
-npx -y github:Asif2902/arc-dex-skills --remove --grok # uninstall (combine --remove with any flags above)
+# Auto-detects all installed AI CLIs on your machine + ~/.agents/skills
+npx -y github:Asif2902/arc-dex-skills
+
+# Install into all supported global CLI skill folders at once
+npx -y github:Asif2902/arc-dex-skills --all
+
+# Global install for a specific CLI (all projects)
+npx -y github:Asif2902/arc-dex-skills --claude        # Claude Code (~/.claude/skills)
+npx -y github:Asif2902/arc-dex-skills --codex         # Codex CLI (~/.codex/skills)
+npx -y github:Asif2902/arc-dex-skills --gemini        # Gemini CLI (~/.gemini/skills)
+npx -y github:Asif2902/arc-dex-skills --antigravity   # Antigravity (~/.gemini/config/skills & ~/.gemini/antigravity/skills)
+npx -y github:Asif2902/arc-dex-skills --opencode      # opencode (~/.config/opencode/skills)
+npx -y github:Asif2902/arc-dex-skills --grok          # Grok Build (~/.grok/skills)
+npx -y github:Asif2902/arc-dex-skills --cursor        # Cursor (~/.cursor/skills)
+npx -y github:Asif2902/arc-dex-skills --copilot       # GitHub Copilot (~/.copilot/skills)
+npx -y github:Asif2902/arc-dex-skills --windsurf      # Windsurf (~/.codeium/windsurf/skills)
+npx -y github:Asif2902/arc-dex-skills --cline         # Cline (~/.cline/skills)
+npx -y github:Asif2902/arc-dex-skills --roo           # Roo Code (~/.roo/skills)
+npx -y github:Asif2902/arc-dex-skills --kiro          # Kiro (~/.kiro/skills)
+npx -y github:Asif2902/arc-dex-skills --amp           # Amp (~/.config/agents/skills)
+npx -y github:Asif2902/arc-dex-skills --goose         # Goose (~/.config/goose/skills)
+npx -y github:Asif2902/arc-dex-skills --agents        # Universal Agent Skills (~/.agents/skills)
+
+# Project-only install (current project folder)
+npx -y github:Asif2902/arc-dex-skills --project              # ./.agents/skills & ./.claude/skills
+npx -y github:Asif2902/arc-dex-skills --all-project          # all supported project skill folders
+npx -y github:Asif2902/arc-dex-skills --claude-project       # Claude Code (./.claude/skills)
+npx -y github:Asif2902/arc-dex-skills --codex-project        # Codex CLI (./.codex/skills)
+npx -y github:Asif2902/arc-dex-skills --gemini-project       # Gemini CLI (./.gemini/skills)
+npx -y github:Asif2902/arc-dex-skills --antigravity-project  # Antigravity (./.agents/skills)
+npx -y github:Asif2902/arc-dex-skills --opencode-project     # opencode (./.opencode/skills)
+npx -y github:Asif2902/arc-dex-skills --grok-project         # Grok Build (./.grok/skills)
+npx -y github:Asif2902/arc-dex-skills --cursor-project       # Cursor (./.cursor/skills)
+npx -y github:Asif2902/arc-dex-skills --copilot-project      # GitHub Copilot (./.github/skills)
+npx -y github:Asif2902/arc-dex-skills --windsurf-project     # Windsurf (./.windsurf/skills)
+npx -y github:Asif2902/arc-dex-skills --cline-project        # Cline (./.cline/skills)
+npx -y github:Asif2902/arc-dex-skills --roo-project          # Roo Code (./.roo/skills)
+npx -y github:Asif2902/arc-dex-skills --kiro-project         # Kiro (./.kiro/skills)
+npx -y github:Asif2902/arc-dex-skills --amp-project          # Amp (./.agents/skills)
+npx -y github:Asif2902/arc-dex-skills --goose-project        # Goose (./.goose/skills)
+npx -y github:Asif2902/arc-dex-skills --agents-project       # Universal Agent Skills (./.agents/skills)
+
+# Custom folder, AGENTS.md pointer, or uninstall
+npx -y github:Asif2902/arc-dex-skills --dir PATH             # any custom folder a tool reads skills from
+npx -y github:Asif2902/arc-dex-skills --agents-md            # copies skills to ./.ai-skills and adds a pointer to ./AGENTS.md
+npx -y github:Asif2902/arc-dex-skills --remove               # uninstall from all detected CLIs (or combine with any flag above)
 ```
 Re-running replaces older copies. `--list` shows the skills; `--help` shows every option.
 
@@ -33,20 +69,20 @@ npx skills add Asif2902/arc-dex-skills
 npm login
 npm publish --access public
 ```
-Then anyone runs `npx -y arc-dex-skills --grok`. If the name `arc-dex-skills` is taken, change `"name"` in `package.json` to `@YOUR-NPM-USERNAME/arc-dex-skills` and run `npx -y @YOUR-NPM-USERNAME/arc-dex-skills --grok`.
+Then anyone runs `npx -y arc-dex-skills` (with any of the flags above, e.g. `--claude`, `--gemini`, `--grok`, `--cursor`, `--all`). If the name `arc-dex-skills` is taken, change `"name"` in `package.json` to `@YOUR-NPM-USERNAME/arc-dex-skills` and run `npx -y @YOUR-NPM-USERNAME/arc-dex-skills`.
 
 ### Without Node
-Unzip the repo and run `bash install.sh` (Mac/Linux) or `.\install.ps1` (Windows). They take the same options (`--grok`, `--all`, `--claude`, `--gemini`, `--antigravity`, `--cursor`, ...).
+Unzip the repo and run `bash install.sh` (Mac/Linux) or `.\install.ps1` (Windows). They take the same options (`--all`, `--claude`, `--codex`, `--gemini`, `--antigravity`, `--opencode`, `--grok`, `--cursor`, `--copilot`, `--windsurf`, `--cline`, `--roo`, `--kiro`, `--amp`, `--goose`, `--agents`, ...).
 
 ### Where each tool reads skills
 | Tool | Global Folder | Project Folder | Command |
 |---|---|---|---|
-| Grok Build | `~/.grok/skills/` | `./.grok/skills/` | `npx -y github:Asif2902/arc-dex-skills --grok` / `--grok-project` |
 | Claude Code | `~/.claude/skills/` | `./.claude/skills/` | `npx -y github:Asif2902/arc-dex-skills --claude` / `--claude-project` |
 | Codex CLI | `~/.codex/skills/` | `./.codex/skills/` | `npx -y github:Asif2902/arc-dex-skills --codex` / `--codex-project` |
 | Gemini CLI | `~/.gemini/skills/` | `./.gemini/skills/` | `npx -y github:Asif2902/arc-dex-skills --gemini` / `--gemini-project` |
-| Antigravity (`agy`) | `~/.gemini/config/skills/` & `~/.gemini/antigravity/skills/` | `./.agents/skills/` | `npx -y github:Asif2902/arc-dex-skills --antigravity` / `--agy` |
+| Antigravity (`agy`) | `~/.gemini/config/skills/` & `~/.gemini/antigravity/skills/` | `./.agents/skills/` | `npx -y github:Asif2902/arc-dex-skills --antigravity` / `--antigravity-project` |
 | opencode | `~/.config/opencode/skills/` | `./.opencode/skills/` | `npx -y github:Asif2902/arc-dex-skills --opencode` / `--opencode-project` |
+| Grok Build | `~/.grok/skills/` | `./.grok/skills/` | `npx -y github:Asif2902/arc-dex-skills --grok` / `--grok-project` |
 | Cursor | `~/.cursor/skills/` | `./.cursor/skills/` | `npx -y github:Asif2902/arc-dex-skills --cursor` / `--cursor-project` |
 | GitHub Copilot | `~/.copilot/skills/` | `./.github/skills/` | `npx -y github:Asif2902/arc-dex-skills --copilot` / `--copilot-project` |
 | Windsurf | `~/.codeium/windsurf/skills/` | `./.windsurf/skills/` | `npx -y github:Asif2902/arc-dex-skills --windsurf` / `--windsurf-project` |
