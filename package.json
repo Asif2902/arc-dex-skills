@@ -1,0 +1,37 @@
+{
+  "name": "arc-dex-skills",
+  "version": "1.1.0",
+  "description": "Installs skills for building a Uniswap V2-style DEX on Arc (frontend rules + subgraph template) into Claude Code, Codex, Gemini CLI, Antigravity, opencode, Grok Build, Cursor, Copilot, Windsurf, Cline, Roo Code, Kiro and more.",
+  "bin": {
+    "arc-dex-skills": "bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "skills",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "keywords": [
+    "skills",
+    "agent-skills",
+    "claude-code",
+    "codex",
+    "gemini-cli",
+    "antigravity",
+    "opencode",
+    "grok-build",
+    "cursor",
+    "copilot",
+    "windsurf",
+    "cline",
+    "roo-code",
+    "kiro",
+    "arc",
+    "uniswap-v2",
+    "dex",
+    "subgraph"
+  ],
+  "license": "MIT"
+}

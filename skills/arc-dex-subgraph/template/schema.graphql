@@ -1,0 +1,47 @@
+type Factory @entity {
+  id: ID!                      # factory address (lowercase)
+  pairCount: Int!
+}
+
+type Token @entity {
+  id: ID!                      # token address (lowercase)
+  symbol: String!
+  name: String!
+  decimals: Int!               # USDC on Arc = 6
+}
+
+type Pair @entity {
+  id: ID!                      # pair address (lowercase)
+  token0: Token!               # sorted by address, same as the contract
+  token1: Token!
+  reserve0: BigInt!            # raw units
+  reserve1: BigInt!            # raw units
+  totalSupply: BigInt!         # LP token supply, 18 decimals
+  tvlUSD: BigDecimal!          # 2 x USDC reserve, 0 if no USDC side
+  volumeUSD: BigDecimal!       # USDC-side swap volume, 0 if no USDC side
+  txCount: Int!                # number of swaps
+  createdAtBlock: BigInt!
+  createdAtTimestamp: BigInt!
+  positions: [LiquidityPosition!]! @derivedFrom(field: "pair")
+}
+
+type LiquidityPosition @entity {
+  id: ID!                      # pairId-userAddress
+  user: Bytes!                 # query with lowercase hex
+  pair: Pair!
+  liquidity: BigInt!           # user's LP balance, raw 18-decimal units
+}
+
+type Swap @entity {
+  id: ID!                      # txHash-logIndex
+  pair: Pair!
+  sender: Bytes!
+  to: Bytes!
+  amount0In: BigInt!
+  amount1In: BigInt!
+  amount0Out: BigInt!
+  amount1Out: BigInt!
+  amountUSD: BigDecimal!       # USDC-side amount, 0 if no USDC side
+  blockNumber: BigInt!
+  timestamp: BigInt!
+}

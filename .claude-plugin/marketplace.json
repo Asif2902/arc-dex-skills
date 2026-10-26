@@ -1,0 +1,11 @@
+{
+  "name": "arc-dex-skills",
+  "owner": { "name": "arc-dex-skills" },
+  "plugins": [
+    {
+      "name": "arc-dex-skills",
+      "source": "./",
+      "description": "Frontend and subgraph skills for a Uniswap V2-style DEX on Arc."
+    }
+  ]
+}

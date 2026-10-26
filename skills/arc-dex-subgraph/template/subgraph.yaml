@@ -1,0 +1,53 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Factory
+    network: arc                 # CONFIRM with your host: The Graph lists "arc"; Goldsky slug must be checked
+    source:
+      address: "0x0000000000000000000000000000000000000000"   # TODO: Factory address
+      abi: Factory
+      startBlock: 0                                           # TODO: Factory deploy block
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      file: ./src/factory.ts
+      entities:
+        - Factory
+        - Pair
+        - Token
+      abis:
+        - name: Factory
+          file: ./abis/Factory.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: PairCreated(indexed address,indexed address,address,uint256)
+          handler: handlePairCreated
+templates:
+  - kind: ethereum/contract
+    name: Pair
+    network: arc                 # same value as above
+    source:
+      abi: Pair
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      file: ./src/pair.ts
+      entities:
+        - Pair
+        - LiquidityPosition
+        - Swap
+      abis:
+        - name: Pair
+          file: ./abis/Pair.json
+      eventHandlers:
+        - event: Sync(uint112,uint112)
+          handler: handleSync
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Swap(indexed address,uint256,uint256,uint256,uint256,indexed address)
+          handler: handleSwap

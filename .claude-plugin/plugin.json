@@ -1,0 +1,5 @@
+{
+  "name": "arc-dex-skills",
+  "description": "Skills for building a Uniswap V2-style DEX on Arc: frontend rules (no WETH, USDC 6 decimals, token ordering, gas buffer, approvals, pools page) and a ready subgraph template.",
+  "version": "1.1.0"
+}
